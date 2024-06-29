@@ -1,0 +1,56 @@
+<div *ngIf="advs.isSign || cus.isSign">
+    <button class="filter" (click)="all()">כל הדירות</button>
+    <br>
+    <label>סינון לפי עיר</label>
+    <select name="cities" id="cities" class="form-control" [(ngModel)]="cityId" (change)="filterByCityId()">
+        <option *ngFor="let c of cits.allCities" [value]="c._id">{{c.name}}</option>
+    </select>
+    <br>
+    <label>סינון לפי קטגוריה</label>
+    <select name="category" id="cat" class="form-control" [(ngModel)]="catId" (change)="filterByCategoryId()">
+        <option *ngFor="let c of cats.allCategories" [value]="c._id">{{c.name}}</option>
+    </select>
+    <br>
+    <label>סינון לפי מחיר מקסימלי</label>
+    <input type="number" placeholder="price" class="form-control" [(ngModel)]="maxPrice">
+    <button class="filter" (click)="filterByPrice()">חפש לפי מחיר</button>
+</div>
+
+<div *ngFor="let a of apts.allApartments" id="container">
+    <div class="product-details">
+        <h4 class="information">{{a.description}}</h4>
+        <div class="control">
+            <button class="btn">
+                <span class="shopping-cart">
+                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                </span>
+                <span class="buy" (click)="show(a._id)">more details</span>
+            </button>
+            <br>
+            <span class="price">{{a.price | currency:"ILS"}}</span>
+        </div>
+
+    </div>
+    <h1 *ngIf="a.name" (click)="show(a._id)">{{a.name}}</h1>
+
+    <div class="product-image">
+        <img *ngIf="a.img" src="http://localhost:3001/{{a.img[0]}}" alt="Omar Dsoky">
+
+        <div class="info">
+            <span *ngIf="a.category != null">Category: {{a.category.name}}</span>
+            <br>
+            <span>Address: {{a.address}}</span>
+            <br>
+            <span *ngIf="a.city != null">City: {{a.city.name}}</span>
+            <br>
+            <span>Number of beds: {{a.beds}}</span>
+            <br>
+            <span *ngIf="a.additions">Additions: {{a.additions}}</span>
+            <br *ngIf="a.additions">
+            <span>Price for night: {{a.price | currency:"ILS"}}</span>
+            <br>
+            <span *ngIf="a.advertiser != null">Advertiser: {{a.advertiser.name}}</span>
+            <br>
+        </div>
+    </div>
+</div>

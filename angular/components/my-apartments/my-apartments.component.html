@@ -1,0 +1,109 @@
+<div *ngFor="let a of myApartments" id="container">
+    <div class="product-details">
+        <h4 class="information">{{a.description}}</h4>
+        <div class="control">
+            <button class="button">
+                <span class="buy" (click)="show(a._id)">more details</span>
+            </button>
+            <br>
+            <button class="btn btn-success" (click)="showUpdate(a._id)">update</button>
+            <button class="btn btn-danger" (click)="delete(a._id)">delete</button>
+            <br>
+            <span class="price">{{a.price | currency:"ILS"}}</span>
+        </div>
+
+    </div>
+    <h1 *ngIf="a.name" (click)="show(a._id)">{{a.name}}</h1>
+
+    <div class="product-image">
+        <img *ngIf="a.img" src="http://localhost:3001/{{a.img[0]}}" alt="Omar Dsoky">
+
+        <div class="info">
+            <span *ngIf="a.category != null">Category: {{a.category.name}}</span>
+            <br>
+            <span>Address: {{a.address}}</span>
+            <br>
+            <span *ngIf="a.city != null">City: {{a.city.name}}</span>
+            <br>
+            <span>Number of beds: {{a.beds}}</span>
+            <br>
+            <span *ngIf="a.additions">Additions: {{a.additions}}</span>
+            <br *ngIf="a.additions">
+            <span>Price for night: {{a.price | currency:"ILS"}}</span>
+            <br>
+            <span *ngIf="a.advertiser != null">Advertiser: {{a.advertiser.name}}</span>
+            <br>
+        </div>
+    </div>
+</div>
+
+<div  *ngIf="!hide">
+    <form [formGroup]="updateApartmentForm" (ngSubmit)="update()">
+
+        <input type="text" placeholder="apartment name" formControlName="name" >
+        <div class="alert" *ngIf="getName.invalid && (getName.touched || getName.dirty)">
+            <strong *ngIf="getName.errors!['pattern']">אותיות עבריות בלבד</strong>
+        </div>
+
+        <br><br>
+        <input type="text" placeholder="description" formControlName="description">
+        <div class="alert"
+            *ngIf="getDescription.invalid && (getDescription.touched || getDescription.dirty)">
+            <strong *ngIf="getDescription.errors!['required']">שדה חובה</strong>
+            <strong *ngIf="getDescription.errors!['pattern']">אותיות עבריות בלבד</strong>
+        </div>
+
+        <br>
+        <p>category: </p>
+        <select id="category" [(ngModel)]="selectedCat" formControlName="category">
+            <option value="{{cat._id}}" *ngFor="let cat of cats.allCategories">{{cat.name}}</option>
+        </select>
+        <div class="alert" *ngIf="getCategory.invalid && (getCategory.touched || getCategory.dirty)">
+            <strong *ngIf="getCategory.errors!['required']">שדה חובה</strong>
+        </div>
+        <br>
+
+        <p>city: </p>
+        <select id="city" [(ngModel)]="selectedCit" formControlName="city" selected="selectedCit">
+            <option value="{{c._id}}" *ngFor="let c of cits.allCities">{{c.name}}</option>
+        </select>
+        <div class="alert" *ngIf="getCity.invalid && (getCity.touched || getCity.dirty)">
+            <strong *ngIf="getCity.errors!['required']">שדה חובה</strong>
+        </div>
+
+        <br><br>
+        <input type="text" placeholder="address" formControlName="address">
+        <div class="alert" *ngIf="getAddress.invalid && (getAddress.touched || getAddress.dirty)">
+            <strong *ngIf="getAddress.errors!['required']">שדה חובה</strong>
+            <strong *ngIf="getAddress.errors!['pattern']">אותיות עבריות בלבד</strong>
+        </div>
+
+        <br><br>
+        <input type="text" placeholder="beds" formControlName="beds">
+        <div class="alert" *ngIf="getBeds.invalid && (getBeds.touched || getBeds.dirty)">
+            <strong *ngIf="getBeds.errors!['required']">שדה חובה</strong>
+            <strong *ngIf="getBeds.errors!['pattern']">מספרים בלבד</strong>
+            <strong *ngIf="getBeds.errors!['min']">מספר מיטות נמוך מדי</strong>
+            <strong *ngIf="getBeds.errors!['max']">מספר מיטות גבוה מדי</strong>
+        </div>
+
+        <br><br>
+        <input type="text" placeholder="additions" formControlName="additions" >
+        <div class="alert"
+            *ngIf="getAdditions.invalid && (getAdditions.touched || getAdditions.dirty)">
+            <strong *ngIf="getAdditions.errors!['pattern']">אותיות עבריות בלבד</strong>
+        </div>
+
+        <br><br>
+        <input type="text" placeholder="price" formControlName="price">
+        <div class="alert" *ngIf="getPrice.invalid && (getPrice.touched || getPrice.dirty)">
+            <strong *ngIf="getPrice.errors!['required']">שדה חובה</strong>
+            <strong *ngIf="getPrice.errors!['pattern']">מספרים בלבד </strong>
+            <strong *ngIf="getPrice.errors!['min']">מחיר נמוך מדי </strong>
+            <strong *ngIf="getPrice.errors!['max']">מחיר גבוה מדי </strong>
+        </div>
+
+        <button class="btn btn-secondary">save</button>
+    </form>
+</div>
+ 

@@ -1,0 +1,77 @@
+<div *ngIf="!advs.isSign && !cus.isSign">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+
+    <div class="main">
+        <input type="checkbox" id="chk" aria-hidden="true">
+
+        <div class="signup">
+            <label for="chk" aria-hidden="true">Sign Up</label>
+            <button (click)="ableAdvertiser()">?רוצים לפרסם דירות</button>
+            <form [formGroup]="registerForm" (ngSubmit)="register()">
+                <input type="text" placeholder="name" formControlName="name">
+
+                <div class="alert"
+                    *ngIf="getNameRegister.invalid && (getNameRegister.touched || getNameRegister.dirty)">
+                    <strong *ngIf="getNameRegister.errors!['required']">שדה חובה</strong>
+                    <strong *ngIf="getNameRegister.errors!['pattern']">אותיות בלבד</strong>
+                </div>
+                <input type="text" placeholder="email" formControlName="email">
+                <div class="alert"
+                    *ngIf="getEmailRegister.invalid && (getEmailRegister.touched || getEmailRegister.dirty)">
+                    <strong *ngIf="getEmailRegister.errors!['required']">שדה חובה</strong>
+                    <strong *ngIf="getEmailRegister.errors!['pattern']">מייל לא תקין</strong>
+                </div>
+                <input type="password" placeholder="password" formControlName="password">
+                <div class="alert"
+                    *ngIf="getPasswordRegister.invalid && (getPasswordRegister.touched || getPasswordRegister.dirty)">
+                    <strong *ngIf="getPasswordRegister.errors!['required']">שדה חובה</strong>
+                </div>
+                <div *ngIf="!hide">
+                    <input type="text" placeholder="phone 1" formControlName="phone_1">
+                    <div class="alert" *ngIf="getPhone1.invalid && (getPhone1.touched || getPhone1.dirty)">
+                        <strong *ngIf="getPhone1.errors!['required']">שדה חובה</strong>
+                        <strong *ngIf="getPhone1.errors!['pattern']">מספר טלפון לא תקין</strong>
+                    </div>
+                    <input type="text" placeholder="phone 2" formControlName="phone_2">
+                    <div class="alert" *ngIf="getPhone2.invalid && (getPhone2.touched || getPhone2.dirty)">
+                        <strong *ngIf="getPhone2.errors!['pattern']">מספר טלפון לא תקין</strong>
+                    </div>
+                </div>
+                <button>sing up</button>
+            </form>
+        </div>
+
+        <div class="login">
+            <form [formGroup]="loginForm" (ngSubmit)="login()">
+                <label for="chk" aria-hidden="true">Login</label>
+                <input type="text" placeholder="name" formControlName="name">
+
+                <div class="alert" *ngIf="getNameLogin.invalid && (getNameLogin.touched || getNameLogin.dirty)">
+                    <strong *ngIf="getNameLogin.errors!['required']">שדה חובה</strong>
+                    <strong *ngIf="getNameLogin.errors!['pattern']">אותיות בלבד</strong>
+                </div>
+                <input type="text" placeholder="email" formControlName="email">
+                <div class="alert" *ngIf="getEmailLogin.invalid && (getEmailLogin.touched || getEmailLogin.dirty)">
+                    <strong *ngIf="getEmailLogin.errors!['required']">שדה חובה</strong>
+                    <strong *ngIf="getEmailLogin.errors!['pattern']">מייל לא תקין</strong>
+                </div>
+                <input type="password" placeholder="password" formControlName="password">
+                <div class="alert"
+                    *ngIf="getPasswordLogin.invalid && (getPasswordLogin.touched || getPasswordLogin.dirty)">
+                    <strong *ngIf="getPasswordLogin.errors!['required']">שדה חובה</strong>
+                </div>
+                <button>login</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div *ngIf="advs.isSign || cus.isSign">
+    <div>
+        <img src="../../assets/pic/person.jpg" id="logo">
+    </div>
+    <ul>
+        <li>name: {{advs.currentUser.name || cus.currentUser.name}}</li>
+        <li>email: {{advs.currentUser.email || cus.currentUser.email}}</li>
+    </ul>
+</div>
+<router-outlet></router-outlet>

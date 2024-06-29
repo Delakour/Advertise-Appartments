@@ -1,0 +1,40 @@
+ul {
+    list-style-type: none;
+}
+
+#content {
+    width: 50%;
+    text-align: center;
+    margin-left: 25%;
+}
+
+input {
+    width: 60%;
+    height: 6vh;
+    background: #e0dede;
+    justify-content: center;
+    display: flex;
+    margin: 10px auto 0;
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
+
+button {
+    width: 60%;
+    height: 40px;
+    margin: 10px auto;
+    justify-content: center;
+    display: block;
+    color: #fff;
+    background: #573b8a;
+    font-size: 1em;
+    font-weight: bold;
+    margin-top: 20px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    transition: .2s ease-in;
+    cursor: pointer;
+}

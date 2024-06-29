@@ -1,0 +1,32 @@
+  body {
+    background-color:white;
+  }
+  #logo{
+    margin:7px 5px 1px;
+    width: 2.7vw;
+    border-radius: 50%;
+    background-image: url('../../assets/pic/person.jpg');
+  }
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  #logo, .link {
+    float: right;
+  }
+  
+  #logo a, .link a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+  .link a:hover {
+    background-color: #111;
+  }

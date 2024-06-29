@@ -1,0 +1,25 @@
+<nav>  
+  <ul>
+    <div>
+      <a routerLink="personalDetails">
+        <img src="../../assets/pic/person.jpg" id="logo">
+      </a>
+    </div>
+    <li class="link">
+      <a routerLink="showAll">הצגת הדירות</a>
+    </li>
+    <li *ngIf="advs.currentUser.token" class="link">
+        <a routerLink="addApt">הוספת דירה</a>
+    </li>
+    <li *ngIf="advs.currentUser.token" class="link">
+      <a routerLink="myApartments">הדירות שלי</a>
+    </li>
+    <li *ngIf="advs.currentUser.token" class="link">
+      <a routerLink="cities">ערים</a>
+    </li>
+    <li *ngIf="advs.currentUser.token" class="link">
+      <a routerLink="categories">קטגוריות</a>
+    </li>
+</ul>
+</nav>
+<router-outlet></router-outlet>

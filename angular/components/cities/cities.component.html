@@ -1,0 +1,13 @@
+<div id="content">
+    <ul>
+        <li *ngFor="let city of cits.allCities">{{city.name}}</li>
+        <br>
+    </ul>
+    <br>
+    <button (click)="showAdd()">הוסף עיר</button>
+    <br>
+    <div *ngIf="!hide">
+        <input type="text" placeholder="new city name" [(ngModel)]="newCity.name">
+        <button (click)="add()">הוסף</button>
+    </div>
+</div>

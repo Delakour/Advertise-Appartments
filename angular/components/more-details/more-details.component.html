@@ -1,0 +1,29 @@
+<div id="content">
+    <h1>{{a.name}}</h1>
+    <h4>{{a.description}}</h4>
+    <ul>
+        <li *ngIf="a.category != null">Category: {{a.category.name}}</li>
+        <br>
+        <li>Address: {{a.address}}</li>
+        <br>
+        <li *ngIf="a.city != null">City: {{a.city.name}}</li>
+        <br>
+        <li>Number of beds: {{a.beds}}</li>
+        <br>
+        <li *ngIf="a.additions">Additions: {{a.additions}}</li>
+        <br *ngIf="a.additions">
+        <li>Price: {{a.price | currency:"ILS"}}</li>
+        <br>
+        <li *ngIf="a.advertiser != null">Advertiser name: {{a.advertiser.name}}</li>
+        <br>
+        <li *ngIf="a.advertiser != null">Advertiser email: {{a.advertiser.email}}</li>
+        <br>
+        <li *ngIf="a.advertiser != null">Advertiser phone 1: {{a.advertiser.phone_1}}</li>
+        <br>
+        <li *ngIf="a.advertiser != null && a.advertiser.phone_2">Advertiser phone 2: {{a.advertiser.phone_2}}</li>
+    </ul>
+</div>
+    <button id="left" (click)="left()"><</button>
+    <img class="images" *ngIf="a.img" src="http://localhost:3001/{{a.img[imageIndex]}}">
+    <button id="right" (click)="right()">></button>
+

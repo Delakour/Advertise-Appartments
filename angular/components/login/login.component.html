@@ -1,0 +1,23 @@
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+    <br>
+    <input class="form-control" type="text" placeholder="name" formControlName="name">
+
+    <div class="alert alert-danger" *ngIf="getName.invalid && (getName.touched || getName.dirty)">
+        <strong *ngIf="getName.errors!['required']">שדה חובה</strong>
+        <strong *ngIf="getName.errors!['pattern']">אותיות בלבד</strong>
+    </div>
+    <br><br>
+    <input class="form-control" type="text" placeholder="email" formControlName="email">
+    <div class="alert alert-danger" *ngIf="getEmail.invalid && (getEmail.touched || getEmail.dirty)">
+        <strong *ngIf="getEmail.errors!['required']">שדה חובה</strong>
+        <strong *ngIf="getEmail.errors!['pattern']">מייל לא תקין</strong>
+    </div>
+    <br><br>
+    <input class="form-control" type="password" placeholder="password" formControlName="password">
+    <div class="alert alert-danger" *ngIf="getPassword.invalid && (getPassword.touched || getPassword.dirty)">
+        <strong *ngIf="getPassword.errors!['required']">שדה חובה</strong>
+    </div>
+    <br><br>
+    <br>
+    <button class="btn btn-secondary">login</button>
+</form>

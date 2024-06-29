@@ -1,0 +1,13 @@
+<div id="content">
+    <ul>
+        <li *ngFor="let cat of cats.allCategories">{{cat.name}}</li>
+        <br>
+    </ul>
+    <br>
+    <button (click)="showAdd()">הוסף קטגוריה</button>
+    <br>
+    <div *ngIf="!hide">
+        <input type="text" placeholder="new category name" [(ngModel)]="newCat.name">
+        <button (click)="add()">הוסף</button>
+    </div>
+</div>

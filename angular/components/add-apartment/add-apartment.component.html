@@ -1,0 +1,73 @@
+<form [formGroup]="addApartmentForm" (ngSubmit)="add()">
+
+    <input type="text" placeholder="apartment name" class="form-control" formControlName="name">
+    <div class="alert alert-danger" *ngIf="getName.invalid && (getName.touched || getName.dirty)">
+        <strong *ngIf="getName.errors!['pattern']">אותיות עבריות בלבד</strong>
+    </div>
+
+    <br><br>
+    <input type="text" placeholder="description" class="form-control" formControlName="description">
+
+    <div class="alert alert-danger" *ngIf="getDescription.invalid && (getDescription.touched || getDescription.dirty)">
+        <strong *ngIf="getDescription.errors!['required']">שדה חובה</strong>
+        <strong *ngIf="getDescription.errors!['pattern']">אותיות עבריות בלבד</strong>
+    </div>
+
+    <br>
+    <p>category: </p>
+    <select class="form-select" id="category"  [(ngModel)]="selectedCat" formControlName="category">
+        <option value="{{cat._id}}" *ngFor="let cat of cats.allCategories">{{cat.name}}</option>
+    </select>
+    <div class="alert alert-danger" *ngIf="getCategory.invalid && (getCategory.touched || getCategory.dirty)">
+        <strong *ngIf="getCategory.errors!['required']">שדה חובה</strong>
+    </div>
+    <br>
+
+    <p>city: </p>
+    <select class="form-select" id="city" [(ngModel)]="selectedCit" formControlName="city">
+        <option value="{{c._id}}" *ngFor="let c of cits.allCities">{{c.name}}</option>
+    </select>
+    <div class="alert alert-danger" *ngIf="getCity.invalid && (getCity.touched || getCity.dirty)">
+        <strong *ngIf="getCity.errors!['required']">שדה חובה</strong>
+    </div>
+
+    <br><br>
+    <input type="text" placeholder="address" class="form-control" formControlName="address">
+
+    <div class="alert alert-danger" *ngIf="getAddress.invalid && (getAddress.touched || getAddress.dirty)">
+        <strong *ngIf="getAddress.errors!['required']">שדה חובה</strong>
+        <strong *ngIf="getAddress.errors!['pattern']">אותיות עבריות בלבד</strong>
+    </div>
+
+    <br><br>
+    <input type="text" placeholder="beds" class="form-control" formControlName="beds">
+
+    <div class="alert alert-danger" *ngIf="getBeds.invalid && (getBeds.touched || getBeds.dirty)">
+        <strong *ngIf="getBeds.errors!['required']">שדה חובה</strong>
+        <strong *ngIf="getBeds.errors!['pattern']">מספרים בלבד</strong>
+        <strong *ngIf="getBeds.errors!['min']">מספר מיטות נמוך מדי</strong>
+        <strong *ngIf="getBeds.errors!['max']">מספר מיטות גבוה מדי</strong>
+    </div>
+
+    <br><br>
+    <input type="text" placeholder="additions" class="form-control" formControlName="additions">
+
+    <div class="alert alert-danger" *ngIf="getAdditions.invalid && (getAdditions.touched || getAdditions.dirty)">
+        <strong *ngIf="getAdditions.errors!['pattern']">אותיות עבריות בלבד</strong>
+    </div>
+
+    <br><br>
+    <input type="text" placeholder="price" class="form-control" formControlName="price">
+
+    <div class="alert alert-danger" *ngIf="getPrice.invalid && (getPrice.touched || getPrice.dirty)">
+        <strong *ngIf="getPrice.errors!['required']">שדה חובה</strong>
+        <strong *ngIf="getPrice.errors!['pattern']">מספרים בלבד </strong>
+        <strong *ngIf="getPrice.errors!['min']">מחיר נמוך מדי </strong>
+        <strong *ngIf="getPrice.errors!['max']">מחיר גבוה מדי </strong>
+    </div>
+    <input type="file" multiple="true" accept="images/*" (change)="chooseImgs($event)" id="files">
+    <br>
+
+    <button class="btn btn-secondary">save</button>
+</form>
+
